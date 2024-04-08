@@ -1,0 +1,207 @@
+openapi: 3.0.0
+info:
+  title: Scape Game API
+  description: Documentation de l'API pour Scape Game
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+paths:
+  /auth/signup:
+    post:
+      summary: Inscription d'un nouvel utilisateur
+      description: Crée un nouvel utilisateur avec les données fournies dans le corps de la requête.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userFName:
+                  type: string
+                userLName:
+                  type: string
+                userBirth:
+                  type: string
+                  format: date
+                userPassword:
+                  type: string
+                email:
+                  type: string
+      responses:
+        '201':
+          description: Utilisateur créé avec succès.
+        '400':
+          description: Erreur de validation ou utilisateur existe déjà.
+
+  /login:
+    post:
+      summary: Connexion d'un utilisateur existant
+      description: Connecte un utilisateur avec les données fournies dans le corps de la requête.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                userPassword:
+                  type: string
+      responses:
+        '200':
+          description: Utilisateur connecté avec succès.
+        '401':
+          description: Email ou mot de passe incorrect.
+
+  /level:
+    post:
+      summary: Créer un nouveau niveau
+      description: Crée un nouveau niveau avec le nom fourni dans le corps de la requête.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                levelName:
+                  type: string
+                userId:
+                  type: integer
+      responses:
+        '201':
+          description: Niveau créé avec succès.
+        '400':
+          description: Erreur de validation.
+
+    get:
+      summary: Obtenir tous les niveaux
+      description: Récupère tous les niveaux de la base de données.
+      responses:
+        '200':
+          description: Liste des niveaux récupérée avec succès.
+
+  /api/scoreboard:
+    post:
+      summary: Ajouter un score au tableau de bord
+      description: Ajoute un score au tableau de bord pour un niveau et un utilisateur spécifiques.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                levelId:
+                  type: integer
+                userId:
+                  type: integer
+                scoreBTime:
+                  type: integer
+      responses:
+        '201':
+          description: Score ajouté avec succès.
+        '400':
+          description: Erreur de validation.
+
+    get:
+      summary: Obtenir le tableau de bord
+      description: Récupère le tableau de bord avec tous les scores.
+      responses:
+        '200':
+          description: Tableau de bord récupéré avec succès.
+
+  /api/commentary:
+    post:
+      summary: Ajouter un commentaire
+      description: Ajoute un commentaire pour un niveau et un utilisateur spécifiques.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                levelId:
+                  type: integer
+                userId:
+                  type: integer
+                commentaryText:
+                  type: string
+      responses:
+        '201':
+          description: Commentaire ajouté avec succès.
+        '400':
+          description: Erreur de validation.
+
+    get:
+      summary: Obtenir les commentaires
+      description: Récupère tous les commentaires pour un niveau spécifique.
+      parameters:
+        - in: query
+          name: levelId
+          schema:
+            type: integer
+          required: true
+          description: ID du niveau pour lequel obtenir les commentaires.
+      responses:
+        '200':
+          description: Commentaires récupérés avec succès.
+        '400':
+          description: Erreur de validation.
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        userId:
+          type: integer
+        userFName:
+          type: string
+        userLName:
+          type: string
+        userBirth:
+          type: string
+          format: date
+        userPassword:
+          type: string
+        email:
+          type: string
+
+    Level:
+      type: object
+      properties:
+        levelId:
+          type: integer
+        levelName:
+          type: string
+        userId:
+          type: integer
+
+    Scoreboard:
+      type: object
+      properties:
+        levelId:
+          type: integer
+        userId:
+          type: integer
+        scoreBTime:
+          type: integer
+
+    Commentary:
+      type: object
+      properties:
+        userId:
+          type: integer
+        levelId:
+          type: integer
+        commentaryId:
+          type: integer
+        commentaryText:
+          type: string
+        created_at:
+          type: string
+          format: date-time
