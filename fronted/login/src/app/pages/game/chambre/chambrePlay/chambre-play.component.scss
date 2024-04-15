@@ -1,0 +1,119 @@
+/* chambre-play.component.scss */
+
+.chambre-play {
+  display: flex; /* Utilise un modèle de boîte flexible pour centrer l'image */
+  justify-content: center; /* Centre horizontalement l'élément dans le conteneur */
+  align-items: center; /* Centre verticalement l'élément dans le conteneur */
+  height: 100vh; /* Hauteur de 100% de la vue (viewport height) */
+  overflow: hidden; /* Empêche le défilement */
+}
+
+.timer {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.room-image {
+  width: 85%; /* Largeur de 75% de la chambre-play */
+  height: 85%; /* Hauteur de 75% de la chambre-play */
+  object-fit: contain; /* Affiche toute l'image sans coupe */
+  margin-left: -20px; /* Décalage de l'image vers la gauche (optionnel) */
+}
+
+.chambre-play-info {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  position: absolute;
+  top: -20;
+  left: 0;
+  right: 0;
+}  
+
+.btn-horloge {
+  position: absolute;
+  top: 37%;
+  left: 83%;
+  width: 80px;
+  height: 80px;
+  background-color: red;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-coffre {
+  position: absolute;
+  top: 61%;
+  left: 44%;
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-tele {
+  position: absolute;
+  top: 33%;
+  left: 12%;
+  width: 130px;
+  height: 130px;
+  background-color: red;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-sofa {
+  position: absolute;
+  top: 75%;
+  left: 60%;
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+
+
+.btn-couteau {
+  position: absolute;
+  top: 90%;
+  left: 40%;
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+}
+.safe-interface {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.safe-interface h3 {
+  margin-top: 0;
+}
+
+.code-input {
+  margin-bottom: 20px;
+}
+
+.code-input input {
+  width: 100px;
+  padding: 5px;
+  font-size: 16px;
+}
+

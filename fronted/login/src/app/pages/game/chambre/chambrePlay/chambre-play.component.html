@@ -1,0 +1,46 @@
+<!-- chambre-play.component.html -->
+
+<div class="chambre-play-info">
+  <p>Vous êtes dans le salon du manoir. Il semble richement décoré, mais quelque chose ne va pas...</p>
+  <p>Explorez la pièce en cliquant sur les éléments pour trouver des indices. Utilisez les boutons pour interagir avec les objets.</p>
+</div>
+
+<div class="chambre-play">
+
+  <div class="timer">
+    <p>Temps écoulé : {{ formatTimer(timer) }}</p>
+  </div>
+
+  <button class="btn-horloge" (click)="toggleClock()"></button>
+
+  <button class="btn-tele" (click)="inspecterTele()"></button>
+
+  <button class="btn-couteau" (click)="inspecterCouteau()"></button>
+
+  
+  <!-- Bouton pour le canapé -->
+  <button class="btn-sofa" (click)="moveSofa()"></button>
+  <!-- Image de la pièce -->
+  <img src="assets/img/scene-crime-nuit-lieu-meurtre-dans-piece-sombre_33099-2442.jpg" alt="Salon du manoir" class="room-image">
+
+  <!-- Autres éléments de votre composant ici -->
+  <div class="safe-interface" *ngIf="!codeCorrect">
+    <h3>Entrez le code du coffre :</h3>
+    <div class="code-input">
+      <input type="text" [(ngModel)]="codeInput" maxlength="4">
+    </div>
+    <button (click)="submitCode()">Valider</button>
+  </div>
+
+  <div class="clock-interface" *ngIf="showClock">
+    <h3>Heure actuelle :</h3>
+    <p>{{ currentTime }}</p>
+    <button (click)="toggleClock()">Fermer</button>
+  </div>
+
+  <div *ngIf="codeCorrect" class="score-display">
+    <h3>Bravo !</h3>
+    <p>Votre score de partie est de {{ score }}</p>
+  </div>
+
+</div>
